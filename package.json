@@ -2,7 +2,7 @@
   "name": "document-generation-system",
   "version": "1.0.0",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npx tailwindcss -i public/css/input.css -o public/css/styles.css",
     "start": "netlify dev",
     "lint": "eslint . --ext .ts,.js"
   },
