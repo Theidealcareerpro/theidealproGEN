@@ -1,0 +1,8 @@
+{
+  "name": "Sample Portfolio Template",
+  "layout": "minimal",
+  "styles": {
+    "font": "Helvetica",
+    "color": "#000000"
+  }
+}
