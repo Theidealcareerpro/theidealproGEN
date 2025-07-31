@@ -1,1 +1,12 @@
+/* Tailwind CSS base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Custom styles */
+body {
+  font-family: Arial, sans-serif;
+}
+.container {
+  max-width: 1200px;
+}
