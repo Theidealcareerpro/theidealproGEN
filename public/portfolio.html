@@ -1,1 +1,32 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Portfolio</title>
+  <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <nav class="bg-blue-600 text-white p-4">
+    <ul class="flex space-x-4">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/cv.html">Create CV</a></li>
+      <li><a href="/cover-letter.html">Create Cover Letter</a></li>
+    </ul>
+  </nav>
+  <main class="container mx-auto p-4 flex">
+    <div class="w-1/2 p-4">
+      <h1 class="text-2xl font-bold mb-4">Portfolio Editor</h1>
+      <select id="template" class="mb-4 p-2 border rounded w-full">
+        <option value="">Select Template</option>
+      </select>
+      <textarea id="editor" class="w-full h-96 p-2 border rounded" placeholder="Enter Portfolio content (JSON format)"></textarea>
+      <button id="generate" class="mt-4 bg-blue-600 text-white p-2 rounded">Generate Portfolio</button>
+      <button id="extend-hosting" class="mt-4 bg-green-600 text-white p-2 rounded hidden">Extend Hosting (£10)</button>
+    </div>
+    <div id="preview" class="w-1/2 p-4 border rounded bg-white"></div>
+  </main>
+  <script src="/js/editor.ts" type="module"></script>
+  <script src="/js/payment.ts" type="module"></script>
+</body>
+</html>
