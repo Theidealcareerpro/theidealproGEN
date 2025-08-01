@@ -1,329 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Create professional CVs, Cover Letters, and Portfolios with ease using our interactive editor." />
-  <meta name="keywords" content="CV generator, cover letter builder, portfolio creator, job applications" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create professional CVs, cover letters, and portfolios effortlessly with our intuitive editor and real-time preview." />
+  <meta name="keywords" content="CV generator, cover letter builder, portfolio creator, job applications, resume builder" />
   <meta name="author" content="Document Generator" />
-  <meta property="og:title" content="Document Generator - Create CVs, Cover Letters & Portfolios" />
-  <meta property="og:description" content="Build professional job application documents in minutes with our easy-to-use editor and live preview." />
+  <meta property="og:title" content="Document Generator - Professional CVs, Cover Letters & Portfolios" />
+  <meta property="og:description" content="Build job-winning documents in minutes with our easy-to-use editor and modern templates." />
   <meta property="og:type" content="website" />
-  <title>Document Generator | Home</title>
-
-  <!-- Tailwind CDN -->
+  <meta property="og:image" content="/assets/og-image.jpg" />
+  <meta property="og:url" content="https://documentgenerator.com" />
+  <meta name="robots" content="index, follow" />
+  <title>Document Generator | Professional Job Application Tools</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    /* Reset and base */
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background-color: #f9fafb;
-      color: #1f2937; /* gray-900 */
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Container max width */
-    .container {
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    /* Glassmorphism */
-    .glass {
-      background: rgba(255 255 255 / 0.15);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255 255 255 / 0.2);
-    }
-
-    /* Header styles */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 50;
-      background: rgba(30 58 138 / 0.9); /* blue-800 with opacity */
-      backdrop-filter: saturate(180%) blur(20px);
-      box-shadow: 0 2px 8px rgb(30 58 138 / 0.4);
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1rem;
-    }
-
-    nav h1 {
-      color: #e0e7ff; /* blue-200 */
-      font-weight: 700;
-      font-size: 1.5rem;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    nav ul li a {
-      color: #c7d2fe; /* blue-300 */
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 0.375rem;
-      transition: background-color 0.25s ease, color 0.25s ease;
-    }
-
-    nav ul li a:hover {
-      background-color: #6366f1; /* blue-500 */
-      color: white;
-    }
-
-    nav ul li a.active,
-    nav ul li a[aria-current="page"] {
-      background-color: #4338ca; /* blue-700 */
-      color: white;
-      pointer-events: none;
-      cursor: default;
-    }
-
-    /* Skip link */
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: auto;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      z-index: 100;
-    }
-    .skip-link:focus,
-    .skip-link:active {
-      position: fixed;
-      left: 1rem;
-      top: 1rem;
-      width: auto;
-      height: auto;
-      padding: 0.5rem 1rem;
-      background-color: #2563eb; /* blue-600 */
-      color: white;
-      border-radius: 0.375rem;
-      z-index: 1000;
-      box-shadow: 0 0 6px rgb(37 99 235 / 0.6);
-      text-decoration: none;
-    }
-
-    /* Hero Section */
-    main {
-      padding-top: 5rem; /* account for fixed header */
-      flex-grow: 1;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #2563eb, #1e40af);
-      color: white;
-      padding: 6rem 1rem;
-      text-align: center;
-      border-radius: 0 0 3rem 3rem;
-      box-shadow: 0 10px 30px rgb(37 99 235 / 0.5);
-    }
-
-    .hero h2 {
-      font-size: 3.25rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      line-height: 1.1;
-    }
-
-    .hero p {
-      font-size: 1.125rem;
-      max-width: 30rem;
-      margin: 0 auto 2rem;
-      font-weight: 500;
-      color: #dbeafe; /* blue-100 */
-    }
-
-    .hero a.cta-btn {
-      background-color: white;
-      color: #2563eb;
-      font-weight: 700;
-      padding: 1rem 3rem;
-      border-radius: 0.75rem;
-      box-shadow: 0 8px 20px rgb(37 99 235 / 0.4);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-      display: inline-block;
-      user-select: none;
-    }
-
-    .hero a.cta-btn:hover,
-    .hero a.cta-btn:focus {
-      background-color: #e0e7ff;
-      box-shadow: 0 12px 28px rgb(37 99 235 / 0.7);
-      transform: translateY(-4px);
-      outline: none;
-    }
-
-    /* Features Section */
-    .features {
-      max-width: 1200px;
-      margin: 5rem auto;
-      padding: 0 1rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .feature-card {
-      background: white;
-      border-radius: 1rem;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 6px 18px rgb(0 0 0 / 0.08);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      color: #374151; /* gray-700 */
-    }
-
-    .feature-card:hover,
-    .feature-card:focus-within {
-      transform: translateY(-10px) scale(1.04);
-      box-shadow: 0 14px 28px rgb(0 0 0 / 0.15);
-      outline: none;
-    }
-
-    .feature-card h4 {
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: #1e293b; /* gray-900 */
-    }
-
-    .feature-card p {
-      font-weight: 500;
-      font-size: 1rem;
-      color: #6b7280; /* gray-500 */
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-card a {
-      font-weight: 600;
-      color: #2563eb; /* blue-600 */
-      text-decoration: none;
-      font-size: 1rem;
-    }
-
-    .feature-card a:hover,
-    .feature-card a:focus {
-      text-decoration: underline;
-      outline: none;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #111827; /* gray-900 */
-      color: #e5e7eb; /* gray-200 */
-      padding: 1.5rem 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      margin-top: auto;
-      box-shadow: 0 -2px 10px rgb(17 24 39 / 0.7);
-    }
-
-    /* Fade-in animations */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
 </head>
-<body>
-
-  <!-- Skip Link -->
+<body class="font-inter bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
   <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <!-- Header -->
-  <header role="banner" class="glass" aria-label="Primary navigation">
-    <nav class="container" role="navigation" aria-label="Main menu">
-      <h1>Document Generator</h1>
-      <ul>
-        <li><a href="/index.html" class="active" aria-current="page">Home</a></li>
-        <li><a href="/cv.html">Create CV</a></li>
-        <li><a href="/cover-letter.html">Create Cover Letter</a></li>
-        <li><a href="/portfolio.html">Create Portfolio</a></li>
+  <header role="banner" class="glass fixed top-0 w-full z-50 bg-blue-800/90 backdrop-blur-md shadow-lg" aria-label="Primary navigation">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-blue-200 font-bold text-2xl">Document Generator</h1>
+      <ul class="flex gap-6">
+        <li><a href="/index.html" class="nav-link active" aria-current="page">Home</a></li>
+        <li><a href="/cv.html" class="nav-link">Create CV</a></li>
+        <li><a href="/cover-letter.html" class="nav-link">Create Cover Letter</a></li>
+        <li><a href="/portfolio.html" class="nav-link">Create Portfolio</a></li>
       </ul>
+      <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-blue-500/50">
+        <svg class="w-6 h-6 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </button>
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main id="main-content" tabindex="-1" role="main">
-    <!-- Hero Section -->
-    <section class="hero fade-in" aria-label="Hero section">
-      <h2>Create Job-Winning Documents Effortlessly</h2>
-      <p>Build professional CVs, cover letters, and portfolios in minutes with our intuitive editor and real-time preview.</p>
-      <a href="/cv.html" class="cta-btn" role="button">Start Creating Now</a>
+  <main id="main-content" tabindex="-1" role="main" class="pt-20 flex-grow">
+    <section class="hero bg-gradient-to-br from-blue-600 to-blue-800 text-white py-24 px-4 text-center rounded-b-3xl shadow-2xl" aria-label="Hero section">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">Create Job-Winning Documents Effortlessly</h2>
+      <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 font-medium text-blue-100">Build professional CVs, cover letters, and portfolios in minutes with our intuitive editor and real-time preview.</p>
+      <a href="/cv.html" class="cta-btn inline-block bg-white text-blue-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-blue-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300" role="button">Start Creating Now</a>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" aria-label="What you can create">
-      <article class="feature-card fade-in" tabindex="0">
-        <h4>CV Generator</h4>
-        <p>Create a polished CV that recruiters love with live previews and modern templates.</p>
-        <a href="/cv.html" aria-label="Create CV">Create CV →</a>
+    <section class="features container mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-3 gap-8" aria-label="What you can create">
+      <article class="feature-card bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300" tabindex="0">
+        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">CV Generator</h4>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">Create a polished CV that recruiters love with live previews and modern templates.</p>
+        <a href="/cv.html" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline" aria-label="Create CV">Create CV →</a>
       </article>
+      <article class="feature-card bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300" tabindex="0">
+        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Cover Letter Builder</h4>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">Generate a personalized cover letter that highlights your strengths and achievements.</p>
+        <a href="/cover-letter.html" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline" aria-label="Create Cover Letter">Create Cover Letter →</a>
+      </article>
+      <article class="feature-card bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300" tabindex="0">
+        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Portfolio Creator</h4>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">Showcase your work and skills with a professional portfolio that's easy to share.</p>
+        <a href="/portfolio.html" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline" aria-label="Create Portfolio">Create Portfolio →</a>
+      </article>
+    </section>
 
-      <article class="feature-card fade-in" tabindex="0">
-        <h4>Cover Letter Builder</h4>
-        <p>Generate a personalized cover letter that highlights your strengths and achievements.</p>
-        <a href="/cover-letter.html" aria-label="Create Cover Letter">Create Cover Letter →</a>
-      </article>
-
-      <article class="feature-card fade-in" tabindex="0">
-        <h4>Portfolio Creator</h4>
-        <p>Showcase your work and skills with a professional portfolio that's easy to share.</p>
-        <a href="/portfolio.html" aria-label="Create Portfolio">Create Portfolio →</a>
-      </article>
+    <section class="subscribe container mx-auto px-4 py-16 text-center" aria-label="Newsletter subscription">
+      <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Stay Updated</h3>
+      <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto">Join our newsletter for tips, templates, and updates on creating standout job application documents.</p>
+      <div class="flex justify-center">
+        <input type="email" id="email-input" placeholder="Enter your email" class="p-4 rounded-l-xl border-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 w-64" aria-label="Email address">
+        <button id="subscribe-btn" class="bg-blue-600 text-white font-semibold py-4 px-6 rounded-r-xl hover:bg-blue-700 transition-colors duration-300" aria-label="Subscribe to newsletter">Subscribe</button>
+      </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer role="contentinfo">
+  <footer role="contentinfo" class="bg-gray-900 text-gray-200 py-6 text-center shadow-inner">
     <p>&copy; 2025 Document Generator. All rights reserved.</p>
   </footer>
 
-  <script>
-    // Fade-in on scroll
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.2 });
-    fadeElements.forEach(el => observer.observe(el));
-  </script>
-
+  <script type="module" src="scripts.js"></script>
 </body>
 </html>
