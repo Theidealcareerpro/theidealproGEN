@@ -3,40 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Create a compelling cover letter with our interactive editor">
-  <meta name="keywords" content="cover letter creator, document generator, job application">
-  <meta name="author" content="Document Generator">
-  <title>Create Cover Letter</title>
+  <meta name="description" content="Create a compelling, professional cover letter with our interactive editor.">
+  <meta name="keywords" content="cover letter generator, professional cover letter, job application tool">
+  <meta name="author" content="ePortfolio Generator">
+  <meta property="og:title" content="Cover Letter Creator - ePortfolio Generator">
+  <meta property="og:description" content="Easily write ATS-friendly cover letters with live preview and customizable templates.">
+  <meta property="og:type" content="website">
+  <title>Create Cover Letter | ePortfolio Generator</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .nav-link:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-    }
-    .nav-link {
-      transition: all 0.2s ease-in-out;
-    }
-  </style>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
-  <header class="bg-blue-700 text-white shadow-lg">
-    <nav class="container mx-auto px-4 py-4">
-      <div class="flex items-center justify-between">
-        <h1 class="text-xl font-bold">Document Generator</h1>
-        <ul class="flex space-x-6">
-          <li><a href="/index.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium" aria-label="Home">Home</a></li>
-          <li><a href="/cv.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium" aria-label="Create CV">Create CV</a></li>
-          <li><a href="/cover-letter.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium bg-blue-800" aria-label="Create Cover Letter">Create Cover Letter</a></li>
-          <li><a href="/portfolio.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium" aria-label="Create Portfolio">Create Portfolio</a></li>
-        </ul>
-      </div>
+<body class="bg-gray-50 min-h-screen flex flex-col text-gray-900">
+
+  <!-- Skip to content -->
+  <a href="#main" class="sr-only focus:not-sr-only p-2 bg-blue-700 text-white">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
+    <nav class="container mx-auto flex justify-between items-center px-4 py-4">
+      <h1 class="text-2xl font-bold">ePortfolio Generator</h1>
+      <ul class="flex space-x-6">
+        <li><a href="/index.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:ring-2 focus:ring-white">Home</a></li>
+        <li><a href="/cv.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:ring-2 focus:ring-white">Create CV</a></li>
+        <li><a href="/cover-letter.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium bg-blue-800" aria-current="page">Create Cover Letter</a></li>
+        <li><a href="/portfolio.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:ring-2 focus:ring-white">Create Portfolio</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main class="container mx-auto px-4 py-8 flex-grow">
+  <!-- Main -->
+  <main id="main" class="container mx-auto px-4 py-8 flex-grow">
     <section class="flex flex-col md:flex-row gap-6">
+      
+      <!-- Editor Section -->
       <div class="w-full md:w-1/2 p-6 bg-white rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Cover Letter Editor</h1>
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Cover Letter Editor</h2>
+
+        <!-- Template Selector -->
         <div class="mb-4">
           <label for="template" class="block text-sm font-medium text-gray-700 mb-2">Select Template</label>
           <select id="template" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" aria-label="Select cover letter template">
@@ -45,47 +47,20 @@
             <option value="creative">Creative</option>
             <option value="executive">Executive</option>
           </select>
+          <p id="template-error" class="text-red-500 text-sm mt-1 hidden">Please select a template.</p>
         </div>
+
+        <!-- JSON Editor -->
         <div class="mb-4">
           <label for="editor" class="block text-sm font-medium text-gray-700 mb-2">Cover Letter Content (JSON format)</label>
-          <textarea id="editor" class="w-full h-96 p-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder='{"recipient": "Hiring Manager", "content": "Your cover letter text"}' aria-label="Cover letter content editor"></textarea>
+          <textarea 
+            id="editor" 
+            class="w-full h-72 p-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+            placeholder='{"recipient": "Hiring Manager", "content": "Your cover letter text"}'
+            aria-label="Cover letter content editor">
+          </textarea>
+          <p id="json-error" class="text-red-500 text-sm mt-1 hidden" aria-live="polite">Invalid JSON format.</p>
         </div>
-        <button id="generate" class="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition-colors" aria-label="Generate Cover Letter">Generate Cover Letter</button>
-      </div>
-      <div id="preview" class="w-full md:w-1/2 p-6 border rounded-lg bg-white shadow-md">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Preview</h2>
-        <div id="preview-content" class="prose max-w-none"></div>
-      </div>
-    </section>
-  </main>
 
-  <footer class="bg-gray-800 text-white py-4">
-    <div class="container mx-auto px-4 text-center">
-      <p>&copy; 2025 Document Generator. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script type="module">
-    // Basic interactivity for navigation and preview
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('bg-blue-800'));
-        e.target.classList.add('bg-blue-800');
-      });
-    });
-
-    // Basic preview update on generate
-    document.getElementById('generate').addEventListener('click', () => {
-      const editorContent = document.getElementById('editor').value;
-      const preview = document.getElementById('preview-content');
-      try {
-        const json = JSON.parse(editorContent);
-        preview.innerHTML = `
-          <h3 class="text-lg font-bold">To: ${json.recipient || 'Hiring Manager'}</h3>
-          <p class="text-gray-600">${json.content || 'Your cover letter content'}</p>
-        `;
-      } catch (e) {
-        preview.innerHTML = '<p class="text-red-500">Invalid JSON format</p>';
-      }
-    });
-  </script>
+        <!-- Generate Button -->
+        <butto
