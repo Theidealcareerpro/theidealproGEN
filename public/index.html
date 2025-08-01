@@ -1,91 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Generate ATS-friendly CVs, cover letters, and online portfolios effortlessly with our ePortfolio Generator.">
-  <meta name="keywords" content="ePortfolio generator, CV creator, cover letter builder, portfolio hosting">
-  <meta name="author" content="ePortfolio Generator">
-  <meta property="og:title" content="ePortfolio Generator - CVs, Cover Letters & Portfolios">
-  <meta property="og:description" content="Craft professional documents and portfolios in minutes. Hosted securely with GitHub & Netlify.">
-  <meta property="og:type" content="website">
-  <title>ePortfolio Generator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create professional CVs, Cover Letters, and Portfolios with ease using our interactive editor." />
+  <meta name="keywords" content="CV generator, cover letter builder, portfolio creator, job applications" />
+  <meta name="author" content="Document Generator" />
+  <meta property="og:title" content="Document Generator - Create CVs, Cover Letters & Portfolios" />
+  <meta property="og:description" content="Build professional job application documents in minutes with our easy-to-use editor and live preview." />
+  <meta property="og:type" content="website" />
+  <title>Document Generator | Home</title>
+  <link rel="stylesheet" href="/css/styles.css" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Glassmorphism Utility */
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Smooth Fade Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Card Hover */
+    .feature-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-900">
 
-<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
-
-  <!-- Skip link for accessibility -->
-  <a href="#main" class="sr-only focus:not-sr-only p-2 bg-blue-700 text-white">Skip to main content</a>
+  <!-- Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only bg-blue-700 text-white p-2">Skip to content</a>
 
   <!-- Header -->
-  <header class="bg-blue-700 text-white shadow-md sticky top-0 z-50">
+  <header class="glass text-white shadow-lg fixed w-full top-0 z-50">
     <nav class="container mx-auto flex justify-between items-center px-4 py-4">
-      <h1 class="text-2xl font-bold">ePortfolio Generator</h1>
+      <h1 class="text-2xl font-bold">Document Generator</h1>
       <ul class="flex space-x-6">
-        <li><a href="/cv.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:ring-2 focus:ring-white" aria-label="Create CV">Create CV</a></li>
-        <li><a href="/cover-letter.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:ring-2 focus:ring-white" aria-label="Create Cover Letter">Create Cover Letter</a></li>
-        <li><a href="/portfolio.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:ring-2 focus:ring-white" aria-label="Create Portfolio">Create Portfolio</a></li>
+        <li><a href="/index.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium bg-blue-800" aria-current="page">Home</a></li>
+        <li><a href="/cv.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800">Create CV</a></li>
+        <li><a href="/cover-letter.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800">Create Cover Letter</a></li>
+        <li><a href="/portfolio.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800">Create Portfolio</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Main content -->
-  <main id="main" class="flex-grow">
-
-    <!-- Hero Section -->
-    <section class="text-center py-16 bg-gradient-to-b from-blue-50 to-white">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Craft Your Career Documents Effortlessly</h2>
-      <p class="text-lg text-gray-600 mb-6 max-w-xl mx-auto">Create ATS-friendly CVs, professional cover letters, and GitHub-hosted portfolios in minutes.</p>
-      <a href="/cv.html" class="inline-block bg-blue-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-800 transition">
-        Get Started
-      </a>
-    </section>
-
-    <!-- Features -->
-    <section class="py-16 container mx-auto px-4">
-      <h3 class="text-2xl font-bold text-center mb-10">Why Choose ePortfolio Generator?</h3>
-      <div class="grid md:grid-cols-3 gap-6 text-center">
-        <div class="p-6 bg-white shadow rounded-lg hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold text-blue-600 mb-2">ATS-Friendly CVs</h4>
-          <p class="text-gray-600">Create perfectly formatted CVs that pass applicant tracking systems effortlessly.</p>
-        </div>
-        <div class="p-6 bg-white shadow rounded-lg hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold text-blue-600 mb-2">Professional Cover Letters</h4>
-          <p class="text-gray-600">Generate personalized cover letters that stand out from the competition.</p>
-        </div>
-        <div class="p-6 bg-white shadow rounded-lg hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold text-blue-600 mb-2">GitHub Portfolio Hosting</h4>
-          <p class="text-gray-600">Host and showcase your portfolio with GitHub Pages integration.</p>
-        </div>
+  <!-- Hero Section -->
+  <main id="main-content" class="flex-grow pt-20">
+    <section class="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 text-white py-24">
+      <div class="container mx-auto text-center px-4 fade-in">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Create Job-Winning Documents Effortlessly</h2>
+        <p class="text-lg max-w-2xl mx-auto mb-6">
+          Build professional CVs, cover letters, and portfolios in minutes with our intuitive editor and real-time preview.
+        </p>
+        <a href="/cv.html" class="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-100 transition transform hover:scale-105">
+          Start Creating Now
+        </a>
       </div>
     </section>
 
-    <!-- Call-to-action -->
-    <section class="bg-blue-700 text-white text-center py-10">
-      <h3 class="text-2xl font-bold mb-4">Start Building Your Career Today</h3>
-      <a href="/cv.html" class="inline-block bg-white text-blue-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">
-        Create Your First Document
-      </a>
+    <!-- Features Section -->
+    <section class="container mx-auto py-20 px-4">
+      <h3 class="text-3xl font-bold text-center mb-16 fade-in">What You Can Create</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- CV -->
+        <div class="feature-card glass rounded-xl p-8 text-center fade-in">
+          <img src="/assets/icons/cv-icon.svg" alt="CV Icon" class="mx-auto mb-6 w-16 h-16">
+          <h4 class="text-xl font-semibold mb-3">CV Generator</h4>
+          <p class="text-gray-200 mb-4">Create a polished CV that recruiters love with live previews and modern templates.</p>
+          <a href="/cv.html" class="text-white font-medium hover:underline">Create CV →</a>
+        </div>
+
+        <!-- Cover Letter -->
+        <div class="feature-card glass rounded-xl p-8 text-center fade-in">
+          <img src="/assets/icons/cover-letter-icon.svg" alt="Cover Letter Icon" class="mx-auto mb-6 w-16 h-16">
+          <h4 class="text-xl font-semibold mb-3">Cover Letter Builder</h4>
+          <p class="text-gray-200 mb-4">Generate a personalized cover letter that highlights your strengths and achievements.</p>
+          <a href="/cover-letter.html" class="text-white font-medium hover:underline">Create Cover Letter →</a>
+        </div>
+
+        <!-- Portfolio -->
+        <div class="feature-card glass rounded-xl p-8 text-center fade-in">
+          <img src="/assets/icons/portfolio-icon.svg" alt="Portfolio Icon" class="mx-auto mb-6 w-16 h-16">
+          <h4 class="text-xl font-semibold mb-3">Portfolio Creator</h4>
+          <p class="text-gray-200 mb-4">Showcase your work and skills with a professional portfolio that's easy to share.</p>
+          <a href="/portfolio.html" class="text-white font-medium hover:underline">Create Portfolio →</a>
+        </div>
+      </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-6">
-    <div class="container mx-auto text-center">
-      <p>&copy; 2025 ePortfolio Generator. All rights reserved.</p>
+  <footer class="bg-gray-900 text-white py-6 mt-auto">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 Document Generator. All rights reserved.</p>
     </div>
   </footer>
 
+  <script src="/js/main.ts" type="module" defer></script>
   <script>
-    // Highlight active nav link based on current page
-    document.querySelectorAll('.nav-link').forEach(link => {
-      if (link.href === window.location.href) {
-        link.setAttribute('aria-current', 'page');
-        link.classList.add('bg-blue-800');
-      }
-    });
+    // Fade-in on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    fadeElements.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
