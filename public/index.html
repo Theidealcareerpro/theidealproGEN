@@ -7,15 +7,12 @@
   <meta name="keywords" content="ePortfolio, CV builder, cover letter generator, GitHub portfolio, ATS resume, portfolio hosting">
   <meta name="author" content="ePortfolio Generator">
   <meta name="robots" content="index, follow">
-  <!-- Security: Content Security Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.stripe.com https://api.supabase.io https://api.github.com">
-  <!-- Open Graph -->
   <meta property="og:title" content="ePortfolio Generator - CVs, Cover Letters, Portfolios">
   <meta property="og:description" content="Create ATS-friendly CVs, professional cover letters, and GitHub-hosted portfolios with ease.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://your-netlify-site.netlify.app">
   <meta property="og:image" content="https://your-netlify-site.netlify.app/og-image.jpg">
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,35 +30,41 @@
   }
   </script>
   <title>ePortfolio Generator - Professional CVs & Portfolios</title>
-  <!-- Inline critical CSS for above-the-fold content -->
   <style>
     :root {
       --blue-600: #2563eb;
       --gray-800: #1f2937;
+      --gray-600: #4b5563;
     }
-    body { font-family: sans-serif; background: #f3f4f6; min-height: 100vh; display: flex; flex-direction: column; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f3f4f6; min-height: 100vh; display: flex; flex-direction: column; margin: 0; }
     header { background: var(--blue-600); color: white; position: sticky; top: 0; z-index: 10; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
-    .nav-link { transition: all 0.2s ease-in-out; padding: 8px 12px; border-radius: 6px; }
-    .nav-link:hover, .nav-link:focus { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+    .nav-link { padding: 8px 12px; border-radius: 6px; transition: background-color 0.2s; }
+    .nav-link:hover, .nav-link:focus { background: rgba(255, 255, 255, 0.1); }
     .nav-link.active { background: rgba(255, 255, 255, 0.2); }
-    h1 { font-size: 2.25rem; font-weight: 700; color: var(--gray-800); }
-    @media (min-width: 768px) { h1 { font-size: 3rem; } }
-    .btn { padding: 12px 24px; border-radius: 6px; transition: background-color 0.3s; }
+    h1 { font-size: 1.875rem; font-weight: 700; color: var(--gray-800); line-height: 1.2; }
+    h2 { font-size: 1.5rem; font-weight: 700; color: var(--gray-800); }
+    .btn { padding: 10px 20px; border-radius: 6px; transition: background-color 0.2s; font-size: 0.875rem; }
     .btn-primary { background: var(--blue-600); color: white; }
-    .btn-primary:hover { background: #1d4ed8; }
-    .card { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: box-shadow 0.3s; }
-    .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    .btn-primary:hover, .btn-primary:focus { background: #1d4ed8; }
+    .card { background: white; padding: 16px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .card:hover { box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+    details summary { cursor: pointer; outline: none; }
+    @media (min-width: 768px) {
+      h1 { font-size: 2.25rem; }
+      h2 { font-size: 1.75rem; }
+      .btn { padding: 12px 24px; font-size: 1rem; }
+      .card { padding: 20px; }
+    }
   </style>
-  <!-- Defer Tailwind for non-critical styles -->
   <script defer src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <header role="banner">
-    <nav class="container py-4" aria-label="Main navigation">
-      <div class="flex items-center justify-between">
-        <a href="/" class="text-xl font-bold" aria-label="ePortfolio Generator Home">ePortfolio Generator</a>
-        <ul class="flex space-x-4" role="list">
+    <nav class="container py-3" aria-label="Main navigation">
+      <div class="flex items-center justify-between flex-wrap">
+        <a href="/" class="text-lg font-bold" aria-label="ePortfolio Generator Home">ePortfolio Generator</a>
+        <ul class="flex space-x-3 mt-2 sm:mt-0" role="list">
           <li><a href="/cv.html" class="nav-link text-sm font-medium" aria-label="Create ATS-friendly CV">Create CV</a></li>
           <li><a href="/cover-letter.html" class="nav-link text-sm font-medium" aria-label="Create Professional Cover Letter">Cover Letter</a></li>
           <li><a href="/portfolio.html" class="nav-link text-sm font-medium" aria-label="Create GitHub Portfolio">Portfolio</a></li>
@@ -71,114 +74,108 @@
   </header>
 
   <main class="flex-grow" role="main">
-    <!-- Hero Section -->
-    <section class="container py-12 text-center bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg" aria-labelledby="hero-heading">
-      <h1 id="hero-heading" class="mb-4">Craft Your Career Path</h1>
-      <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto">Build ATS-friendly CVs, professional cover letters, and GitHub portfolios in minutes.</p>
-      <div class="flex justify-center gap-4">
+    <section class="container py-8 text-center bg-blue-50 rounded-lg" aria-labelledby="hero-heading">
+      <h1 id="hero-heading" class="mb-3">Craft Your Career</h1>
+      <p class="text-base text-gray-600 mb-6 max-w-lg mx-auto">Build ATS-friendly CVs, cover letters, and GitHub portfolios effortlessly.</p>
+      <div class="flex justify-center gap-3 flex-wrap">
         <a href="/cv.html" class="btn btn-primary" aria-label="Start creating your CV">Get Started</a>
-        <a href="#features" class="btn bg-gray-200 text-gray-800" aria-label="Explore ePortfolio Generator features">Explore Features</a>
+        <a href="#features" class="btn bg-gray-200 text-gray-800" aria-label="Explore features">Explore</a>
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="container py-12" aria-labelledby="features-heading">
-      <h2 id="features-heading" class="text-2xl font-bold text-gray-800 text-center mb-8">Why ePortfolio Generator?</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section id="features" class="container py-8" aria-labelledby="features-heading">
+      <h2 id="features-heading" class="text-center mb-6">Why Choose Us?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <article class="card">
-          <h3 class="text-lg font-semibold text-blue-600 mb-2">ATS-Optimized CVs</h3>
-          <p class="text-gray-600 text-sm">Resumes designed to pass Applicant Tracking Systems.</p>
+          <h3 class="text-base font-semibold text-blue-600 mb-1">ATS CVs</h3>
+          <p class="text-sm text-gray-600">Resumes optimized for ATS.</p>
         </article>
         <article class="card">
-          <h3 class="text-lg font-semibold text-blue-600 mb-2">Cover Letters</h3>
-          <p class="text-gray-600 text-sm">Create tailored letters with live previews.</p>
+          <h3 class="text-base font-semibold text-blue-600 mb-1">Cover Letters</h3>
+          <p class="text-sm text-gray-600">Tailored with live previews.</p>
         </article>
         <article class="card">
-          <h3 class="text-lg font-semibold text-blue-600 mb-2">GitHub Portfolios</h3>
-          <p class="text-gray-600 text-sm">Host portfolios for £10/year via Stripe.</p>
+          <h3 class="text-base font-semibold text-blue-600 mb-1">Portfolios</h3>
+          <p class="text-sm text-gray-600">Host on GitHub for £10/year.</p>
         </article>
       </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="container py-12 bg-gray-100" aria-labelledby="how-it-works-heading">
-      <h2 id="how-it-works-heading" class="text-2xl font-bold text-gray-800 text-center mb-8">How It Works</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+    <section id="how-it-works" class="container py-8 bg-gray-100" aria-labelledby="how-it-works-heading">
+      <h2 id="how-it-works-heading" class="text-center mb-6">How It Works</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
         <article class="text-center">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-4">1</div>
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">Select Document</h3>
-          <p class="text-gray-600 text-sm">Choose CV, cover letter, or portfolio.</p>
+          <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-3">1</div>
+          <h3 class="text-base font-semibold mb-1">Select</h3>
+          <p class="text-sm text-gray-600">Choose CV, letter, or portfolio.</p>
         </article>
         <article class="text-center">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-4">2</div>
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">Fill & Preview</h3>
-          <p class="text-gray-600 text-sm">Input details with real-time validation.</p>
+          <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-3">2</div>
+          <h3 class="text-base font-semibold mb-1">Fill</h3>
+          <p class="text-sm text-gray-600">Input with real-time preview.</p>
         </article>
         <article class="text-center">
-          <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-4">3</div>
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">Download/Host</h3>
-          <p class="text-gray-600 text-sm">Get PDFs or host on GitHub.</p>
+          <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-3">3</div>
+          <h3 class="text-base font-semibold mb-1">Download</h3>
+          <p class="text-sm text-gray-600">Get PDFs or host on GitHub.</p>
         </article>
       </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="container py-12" aria-labelledby="testimonials-heading">
-      <h2 id="testimonials-heading" class="text-2xl font-bold text-gray-800 text-center mb-8">User Success Stories</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+    <section id="testimonials" class="container py-8" aria-labelledby="testimonials-heading">
+      <h2 id="testimonials-heading" class="text-center mb-6">User Stories</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
         <article class="card">
-          <p class="text-gray-600 text-sm italic">"My ATS-friendly CV got me interviews at top tech firms!"</p>
-          <p class="mt-4 font-semibold text-gray-800 text-sm">- Jane D.</p>
+          <p class="text-sm text-gray-600 italic">"My CV got me interviews!"</p>
+          <p class="mt-2 text-sm font-semibold text-gray-800">- Jane D.</p>
         </article>
         <article class="card">
-          <p class="text-gray-600 text-sm italic">"Portfolio hosting was quick and professional."</p>
-          <p class="mt-4 font-semibold text-gray-800 text-sm">- Mark S.</p>
+          <p class="text-sm text-gray-600 italic">"Portfolio hosting was easy."</p>
+          <p class="mt-2 text-sm font-semibold text-gray-800">- Mark S.</p>
         </article>
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="container py-12 bg-gray-100" aria-labelledby="faq-heading">
-      <h2 id="faq-heading" class="text-2xl font-bold text-gray-800 text-center mb-8">FAQs</h2>
-      <div class="max-w-3xl mx-auto space-y-4">
+    <section id="faq" class="container py-8 bg-gray-100" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" class="text-center mb-6">FAQs</h2>
+      <div class="max-w-2xl mx-auto space-y-3">
         <details class="card">
-          <summary class="font-semibold text-gray-800 cursor-pointer">Is my data secure?</summary>
-          <p class="text-gray-600 text-sm mt-2">Yes, we use Supabase for secure storage and rate limiting for APIs.</p>
+          <summary class="text-sm font-semibold text-gray-800">Is my data secure?</summary>
+          <p class="text-sm text-gray-600 mt-1">Yes, secured by Supabase and rate-limited APIs.</p>
         </details>
         <details class="card">
-          <summary class="font-semibold text-gray-800 cursor-pointer">Portfolio hosting cost?</summary>
-          <p class="text-gray-600 text-sm mt-2">£10/year via Stripe. <a href="https://x.ai/grok" class="text-blue-600 hover:underline">Details</a>.</p>
+          <summary class="text-sm font-semibold text-gray-800">Portfolio cost?</summary>
+          <p class="text-sm text-gray-600 mt-1">£10/year via Stripe. <a href="https://x.ai/grok" class="text-blue-600 hover:underline">Details</a>.</p>
         </details>
         <details class="card">
-          <summary class="font-semibold text-gray-800 cursor-pointer">Can I edit documents?</summary>
-          <p class="text-gray-600 text-sm mt-2">Yes, edit anytime via Supabase storage.</p>
+          <summary class="text-sm font-semibold text-gray-800">Can I edit?</summary>
+          <p class="text-sm text-gray-600 mt-1">Yes, edit via Supabase anytime.</p>
         </details>
       </div>
     </section>
   </main>
 
-  <footer class="bg-gray-800 text-white py-6" role="contentinfo">
+  <footer class="bg-gray-800 text-white py-4" role="contentinfo">
     <div class="container text-center">
-      <p class="mb-2 text-sm">&copy; 2025 ePortfolio Generator. All rights reserved.</p>
+      <p class="text-sm mb-2">&copy; 2025 ePortfolio Generator.</p>
       <nav aria-label="Footer navigation">
-        <ul class="flex justify-center space-x-4">
-          <li><a href="/privacy" class="text-gray-400 hover:text-white text-sm" aria-label="Privacy Policy">Privacy</a></li>
-          <li><a href="/terms" class="text-gray-400 hover:text-white text-sm" aria-label="Terms of Service">Terms</a></li>
-          <li><a href="/contact" class="text-gray-400 hover:text-white text-sm" aria-label="Contact Us">Contact</a></li>
+        <ul class="flex justify-center space-x-3">
+          <li><a href="/privacy" class="text-sm text-gray-400 hover:text-white" aria-label="Privacy Policy">Privacy</a></li>
+          <li><a href="/terms" class="text-sm text-gray-400 hover:text-white" aria-label="Terms of Service">Terms</a></li>
+          <li><a href="/contact" class="text-sm text-gray-400 hover:text-white" aria-label="Contact Us">Contact</a></li>
         </ul>
       </nav>
     </div>
   </footer>
 
   <script type="module">
-    // Optimized navigation with focus management
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         navLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
       });
-      link.addEventListener('keydown', (e) => {
+      link.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           navLinks.forEach(l => l.classList.remove('active'));
