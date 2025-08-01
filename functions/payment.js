@@ -30,8 +30,8 @@ exports.handler = async (event) => {
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: `${process.env.URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.URL}/cancel`,
+      success_url: `${process.env.URL_NET}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.URL_NET}/cancel`,
       metadata: { portfolioId },
     });
 
