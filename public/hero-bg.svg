@@ -1,0 +1,15 @@
+
+<svg width="100%" height="100%" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="600" fill="url(#gradient)"/>
+  <path d="M0 300C200 200 400 400 720 300C1040 200 1240 400 1440 300L1440 600H0V300Z" fill="url(#wave)" fill-opacity="0.3"/>
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="1440" y2="600">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="300" x2="1440" y2="600">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+</svg>
