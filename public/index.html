@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Create professional CVs, Cover Letters, and Portfolios with ease using our interactive editor." />
   <meta name="keywords" content="CV generator, cover letter builder, portfolio creator, job applications" />
   <meta name="author" content="Document Generator" />
@@ -13,50 +13,210 @@
   <link rel="stylesheet" href="/css/styles.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Glassmorphism Utility */
-    .glass {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Base reset */
+    * {
+      box-sizing: border-box;
     }
 
-    /* Smooth Fade Animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f7fafc; /* light gray-blue */
+      color: #2d3748; /* dark slate */
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Card Hover */
-    .feature-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+    header {
+      background-color: #1a202c; /* dark blue-gray */
+      color: #edf2f7; /* light gray */
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
     }
-    .feature-card:hover,
-    .feature-card:focus-within {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+    nav.container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #a0aec0; /* gray-400 */
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      background-color: #2b6cb0; /* blue-600 */
+      color: #f7fafc;
       outline: none;
+      box-shadow: 0 0 0 3px #90cdf4;
     }
 
-    /* Navigation link */
-    .nav-link {
-      transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    nav a[aria-current="page"] {
+      background-color: #2b6cb0;
+      color: white;
+      font-weight: 700;
+      cursor: default;
+    }
+
+    main {
+      flex-grow: 1;
+      padding-top: 4.5rem; /* header height */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 6rem 0 4rem 0;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h2 {
+      font-size: 2.75rem;
+      font-weight: 900;
+      color: #2c5282; /* blue-800 */
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: #4a5568; /* gray-600 */
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .btn-primary {
+      background-color: #2b6cb0; /* blue-600 */
+      color: white;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-size: 1.125rem;
+      box-shadow: 0 4px 10px rgb(66 153 225 / 0.5);
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
       display: inline-block;
     }
-    .nav-link:hover,
-    .nav-link:focus {
-      background-color: rgba(59, 130, 246, 0.7); /* Tailwind blue-500 with opacity */
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #2c5282; /* blue-800 */
+      box-shadow: 0 6px 15px rgb(66 153 225 / 0.7);
       transform: translateY(-2px);
       outline: none;
     }
 
-    /* Accessibility: Screen reader only */
+    /* Features Section */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-top: 5rem;
+      margin-bottom: 6rem;
+    }
+
+    @media (min-width: 768px) {
+      .features {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature-card {
+      background-color: white;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgb(160 174 192 / 0.15);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .feature-card:hover,
+    .feature-card:focus-within {
+      box-shadow: 0 12px 30px rgb(66 153 225 / 0.25);
+      transform: translateY(-5px);
+      outline: none;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #2c5282;
+    }
+
+    .feature-card p {
+      flex-grow: 1;
+      font-size: 1rem;
+      color: #4a5568;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .feature-card a {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #2b6cb0;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .feature-card a:hover,
+    .feature-card a:focus {
+      border-color: #2b6cb0;
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1a202c;
+      color: #a0aec0;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.875rem;
+      user-select: none;
+    }
+
+    /* Accessibility - skip link */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -64,105 +224,95 @@
       padding: 0;
       margin: -1px;
       overflow: hidden;
-      clip: rect(0, 0, 0, 0);
+      clip: rect(0,0,0,0);
       white-space: nowrap;
       border: 0;
     }
-    .focus\:not-sr-only:focus {
+    .sr-only:focus,
+    .sr-only:active {
       position: static;
       width: auto;
       height: auto;
       margin: 0;
+      overflow: visible;
       clip: auto;
       white-space: normal;
+      background-color: #2b6cb0;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      z-index: 10000;
     }
   </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen text-gray-900">
+<body>
 
   <!-- Skip Link -->
-  <a href="#main-content" class="sr-only focus:not-sr-only bg-blue-700 text-white p-2 z-50 rounded">Skip to content</a>
+  <a href="#main-content" class="sr-only">Skip to main content</a>
 
   <!-- Header -->
-  <header class="glass text-white shadow-lg fixed w-full top-0 z-50">
-    <nav class="container mx-auto flex justify-between items-center px-4 py-4" role="navigation" aria-label="Primary navigation">
-      <h1 class="text-2xl font-bold">Document Generator</h1>
-      <ul class="flex space-x-6">
-        <li><a href="/index.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium bg-blue-800" aria-current="page">Home</a></li>
-        <li><a href="/cv.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:bg-blue-800 focus:outline-none">Create CV</a></li>
-        <li><a href="/cover-letter.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:bg-blue-800 focus:outline-none">Create Cover Letter</a></li>
-        <li><a href="/portfolio.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:bg-blue-800 focus:outline-none">Create Portfolio</a></li>
+  <header>
+    <nav class="container" role="navigation" aria-label="Primary Navigation">
+      <h1>Document Generator</h1>
+      <ul>
+        <li><a href="/index.html" aria-current="page">Home</a></li>
+        <li><a href="/cv.html">Create CV</a></li>
+        <li><a href="/cover-letter.html">Create Cover Letter</a></li>
+        <li><a href="/portfolio.html">Create Portfolio</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <main id="main-content" class="flex-grow pt-24" tabindex="-1">
-    <section class="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 text-white py-24">
-      <div class="container mx-auto text-center px-4 fade-in" role="region" aria-label="Introduction">
-        <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Create Job-Winning Documents Effortlessly</h2>
-        <p class="text-lg max-w-2xl mx-auto mb-6">
-          Build professional CVs, cover letters, and portfolios in minutes with our intuitive editor and real-time preview.
-        </p>
-        <a href="/cv.html" class="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-100 transition transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50">
-          Start Creating Now
-        </a>
-      </div>
+  <!-- Main Content -->
+  <main id="main-content" tabindex="-1">
+    <section class="hero" role="region" aria-label="Introduction">
+      <h2>Create Job-Winning Documents Effortlessly</h2>
+      <p>Build professional CVs, cover letters, and portfolios in minutes with our intuitive editor and real-time preview.</p>
+      <a href="/cv.html" class="btn-primary">Start Creating Now</a>
     </section>
 
-    <!-- Features Section -->
-    <section class="container mx-auto py-20 px-4" role="region" aria-labelledby="features-title">
-      <h3 id="features-title" class="text-3xl font-bold text-center mb-16 fade-in">What You Can Create</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- CV -->
-        <div tabindex="0" class="feature-card glass rounded-xl p-8 text-center fade-in" role="button" aria-describedby="cv-desc" aria-label="Create a CV">
-          <img src="/assets/icons/cv-icon.svg" alt="CV Icon" class="mx-auto mb-6 w-16 h-16" />
-          <h4 class="text-xl font-semibold mb-3">CV Generator</h4>
-          <p id="cv-desc" class="text-gray-200 mb-4">Create a polished CV that recruiters love with live previews and modern templates.</p>
-          <a href="/cv.html" class="text-white font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded">Create CV →</a>
-        </div>
+    <section class="features" role="region" aria-labelledby="features-title">
+      <h3 id="features-title" class="sr-only">What You Can Create</h3>
 
-        <!-- Cover Letter -->
-        <div tabindex="0" class="feature-card glass rounded-xl p-8 text-center fade-in" role="button" aria-describedby="cover-letter-desc" aria-label="Create a Cover Letter">
-          <img src="/assets/icons/cover-letter-icon.svg" alt="Cover Letter Icon" class="mx-auto mb-6 w-16 h-16" />
-          <h4 class="text-xl font-semibold mb-3">Cover Letter Builder</h4>
-          <p id="cover-letter-desc" class="text-gray-200 mb-4">Generate a personalized cover letter that highlights your strengths and achievements.</p>
-          <a href="/cover-letter.html" class="text-white font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded">Create Cover Letter →</a>
-        </div>
+      <article class="feature-card" tabindex="0" role="group" aria-labelledby="feature-cv-title" aria-describedby="feature-cv-desc">
+        <h3 id="feature-cv-title">CV Generator</h3>
+        <p id="feature-cv-desc">Create a polished CV that recruiters love with live previews and modern templates.</p>
+        <a href="/cv.html">Create CV →</a>
+      </article>
 
-        <!-- Portfolio -->
-        <div tabindex="0" class="feature-card glass rounded-xl p-8 text-center fade-in" role="button" aria-describedby="portfolio-desc" aria-label="Create a Portfolio">
-          <img src="/assets/icons/portfolio-icon.svg" alt="Portfolio Icon" class="mx-auto mb-6 w-16 h-16" />
-          <h4 class="text-xl font-semibold mb-3">Portfolio Creator</h4>
-          <p id="portfolio-desc" class="text-gray-200 mb-4">Showcase your work and skills with a professional portfolio that's easy to share.</p>
-          <a href="/portfolio.html" class="text-white font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded">Create Portfolio →</a>
-        </div>
-      </div>
+      <article class="feature-card" tabindex="0" role="group" aria-labelledby="feature-cover-title" aria-describedby="feature-cover-desc">
+        <h3 id="feature-cover-title">Cover Letter Builder</h3>
+        <p id="feature-cover-desc">Generate a personalized cover letter that highlights your strengths and achievements.</p>
+        <a href="/cover-letter.html">Create Cover Letter →</a>
+      </article>
+
+      <article class="feature-card" tabindex="0" role="group" aria-labelledby="feature-portfolio-title" aria-describedby="feature-portfolio-desc">
+        <h3 id="feature-portfolio-title">Portfolio Creator</h3>
+        <p id="feature-portfolio-desc">Showcase your work and skills with a professional portfolio that's easy to share.</p>
+        <a href="/portfolio.html">Create Portfolio →</a>
+      </article>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-6 mt-auto">
-    <div class="container mx-auto px-4 text-center">
-      <p>&copy; 2025 Document Generator. All rights reserved.</p>
-    </div>
+  <footer>
+    <p>&copy; 2025 Document Generator. All rights reserved.</p>
   </footer>
 
-  <script src="/js/main.ts" type="module" defer></script>
   <script>
-    // Fade-in on scroll with IntersectionObserver
-    document.addEventListener('DOMContentLoaded', () => {
-      const fadeElements = document.querySelectorAll('.fade-in');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // Optional: animate once only
+    // Keyboard focus visible for feature cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const link = card.querySelector('a');
+          if (link) {
+            link.click();
+            e.preventDefault();
           }
-        });
-      }, { threshold: 0.2 });
-      fadeElements.forEach(el => observer.observe(el));
+        }
+      });
     });
   </script>
+
 </body>
 </html>
