@@ -1,149 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Build a professional portfolio with our interactive editor.">
-  <meta name="keywords" content="portfolio generator, portfolio creator, document generator, job applications">
+  <meta name="description" content="Create professional portfolios with our interactive editor, live preview, and customizable templates.">
+  <meta name="keywords" content="portfolio generator, portfolio creator, document generator, job applications, professional portfolio">
   <meta name="author" content="ePortfolio Generator">
   <meta property="og:title" content="Portfolio Creator - ePortfolio Generator">
-  <meta property="og:description" content="Easily create a professional portfolio with live preview and customizable templates.">
+  <meta property="og:description" content="Build stunning portfolios with live preview, image uploads, and customizable templates in minutes.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/og-image.jpg">
+  <meta property="og:url" content="https://eportfoliogenerator.com/portfolio">
+  <meta name="robots" content="index, follow">
   <title>Create Portfolio | ePortfolio Generator</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col text-gray-900">
+<body class="font-inter bg-gray-50 text-gray-900 min-h-screen flex flex-col transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
+  <a href="#main" class="skip-link">Skip to main content</a>
 
-  <!-- Skip to content -->
-  <a href="#main" class="sr-only focus:not-sr-only p-2 bg-blue-700 text-white">Skip to main content</a>
-
-  <!-- Header -->
-  <header class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
-    <nav class="container mx-auto flex justify-between items-center px-4 py-4">
-      <h1 class="text-2xl font-bold">ePortfolio Generator</h1>
-      <ul class="flex space-x-6">
-        <li><a href="/index.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800">Home</a></li>
-        <li><a href="/cv.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800">Create CV</a></li>
-        <li><a href="/cover-letter.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800">Create Cover Letter</a></li>
-        <li><a href="/portfolio.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium bg-blue-800" aria-current="page">Create Portfolio</a></li>
+  <header role="banner" class="glass fixed top-0 w-full z-50 bg-blue-800/90 backdrop-blur-md shadow-lg" aria-label="Primary navigation">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-blue-200 font-bold text-2xl">ePortfolio Generator</h1>
+      <ul class="flex gap-6">
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/cv.html" class="nav-link">Create CV</a></li>
+        <li><a href="/cover-letter.html" class="nav-link">Create Cover Letter</a></li>
+        <li><a href="/portfolio.html" class="nav-link active" aria-current="page">Create Portfolio</a></li>
       </ul>
+      <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-blue-500/50">
+        <svg class="w-6 h-6 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </button>
     </nav>
   </header>
 
-  <!-- Main -->
-  <main id="main" class="container mx-auto px-4 py-8 flex-grow">
-    <section class="flex flex-col md:flex-row gap-6">
-      
-      <!-- Editor Section -->
-      <div class="w-full md:w-1/2 p-6 bg-white rounded-lg shadow-md">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6">Portfolio Editor</h2>
-
+  <main id="main" tabindex="-1" role="main" class="container mx-auto px-4 py-20 flex-grow">
+    <section class="flex flex-col md:flex-row gap-6" aria-label="Portfolio editor and preview">
+      <div class="w-full md:w-1/2 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md fade-in">
+        <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Portfolio Editor</h2>
         <!-- Template Selector -->
         <div class="mb-4">
-          <label for="template" class="block text-sm font-medium text-gray-700 mb-2">Select Template</label>
-          <select id="template" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" aria-label="Select portfolio template">
+          <label for="template" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Select Template</label>
+          <select id="template" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-gray-100" aria-label="Select portfolio template">
             <option value="">Select Template</option>
             <option value="creative">Creative</option>
             <option value="professional">Professional</option>
             <option value="minimal">Minimal</option>
           </select>
-          <p id="template-error" class="text-red-500 text-sm mt-1 hidden">Please select a template.</p>
+          <p id="template-error" class="text-red-500 text-sm mt-1 hidden" aria-live="polite">Please select a template.</p>
         </div>
-
         <!-- JSON Editor -->
         <div class="mb-4">
-          <label for="editor" class="block text-sm font-medium text-gray-700 mb-2">Portfolio Content (JSON format)</label>
-          <textarea 
-            id="editor" 
-            class="w-full h-72 p-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-            placeholder='{"title": "Your Portfolio Title", "projects": [], "skills": []}'
-            aria-label="Portfolio content editor">
-          </textarea>
+          <label for="editor" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Portfolio Content (JSON format)</label>
+          <textarea id="editor" class="w-full h-72 p-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-gray-100" placeholder='{"title": "Your Portfolio Title", "projects": [], "skills": [], "image": ""}' aria-label="Portfolio content editor"></textarea>
           <p id="json-error" class="text-red-500 text-sm mt-1 hidden" aria-live="polite">Invalid JSON format.</p>
         </div>
-
+        <!-- Image Upload -->
+        <div class="mb-4">
+          <label for="image-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Upload Portfolio Image</label>
+          <input type="file" id="image-upload" accept="image/*" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-gray-100" aria-label="Upload portfolio image">
+          <p id="image-error" class="text-red-500 text-sm mt-1 hidden" aria-live="polite">Please upload a valid image (JPEG, PNG).</p>
+          <div id="image-preview" class="mt-4 hidden">
+            <img src="" alt="Uploaded portfolio image preview" class="max-w-full h-auto rounded-md">
+          </div>
+        </div>
+        <!-- CV Upload -->
+        <div class="mb-4">
+          <label for="cv-upload" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Upload Existing CV (PDF)</label>
+          <input type="file" id="cv-upload" accept="application/pdf" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-gray-100" aria-label="Upload existing CV">
+          <p id="cv-error" class="text-red-500 text-sm mt-1 hidden" aria-live="polite">Please upload a valid PDF file.</p>
+        </div>
         <!-- Buttons -->
         <div class="flex space-x-4">
-          <button 
-            id="generate" 
-            class="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition-colors"
-            aria-label="Generate Portfolio">
-            Generate Portfolio
-          </button>
-          <button 
-            id="extend-hosting" 
-            class="w-full bg-green-600 text-white p-3 rounded-md hover:bg-green-700 transition-colors hidden"
-            aria-label="Extend Hosting">
-            Extend Hosting (£10)
-          </button>
+          <button id="generate" class="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" aria-label="Generate Portfolio">Generate Portfolio</button>
+          <button id="extend-hosting" class="w-full bg-green-600 text-white p-3 rounded-md hover:bg-green-700 transition-colors hidden focus:ring-2 focus:ring-green-500 focus:ring-offset-2" aria-label="Extend Hosting">Extend Hosting (£10)</button>
         </div>
       </div>
-
-      <!-- Preview Section -->
-      <div id="preview" class="w-full md:w-1/2 p-6 border rounded-lg bg-white shadow-md">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Preview</h2>
-        <div id="preview-content" class="prose max-w-none text-gray-600">
+      <div id="preview" class="w-full md:w-1/2 p-6 border rounded-lg bg-white dark:bg-gray-800 shadow-md fade-in">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Preview</h2>
+        <div id="preview-content" class="prose max-w-none text-gray-600 dark:text-gray-400">
           <p>Your portfolio preview will appear here after you generate it.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-4">
-    <div class="container mx-auto px-4 text-center">
-      <p>&copy; 2025 ePortfolio Generator. All rights reserved.</p>
-    </div>
+  <footer role="contentinfo" class="bg-gray-900 text-gray-200 py-6 text-center shadow-inner">
+    <p>&copy; 2025 ePortfolio Generator. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
-  <script type="module">
-    const generateBtn = document.getElementById('generate');
-    const templateSelect = document.getElementById('template');
-    const templateError = document.getElementById('template-error');
-    const editor = document.getElementById('editor');
-    const jsonError = document.getElementById('json-error');
-    const preview = document.getElementById('preview-content');
-    const extendHosting = document.getElementById('extend-hosting');
-
-    generateBtn.addEventListener('click', () => {
-      templateError.classList.add('hidden');
-      jsonError.classList.add('hidden');
-
-      // Validate template
-      if (!templateSelect.value) {
-        templateError.classList.remove('hidden');
-        return;
-      }
-
-      try {
-        const json = JSON.parse(editor.value);
-        const projectsList = json.projects?.length 
-          ? `<ul class="list-disc pl-5">${json.projects.map(p => `<li>${p}</li>`).join('')}</ul>` 
-          : '<p class="text-gray-500">No projects added.</p>';
-        const skillsList = json.skills?.length 
-          ? `<ul class="list-disc pl-5">${json.skills.map(s => `<li>${s}</li>`).join('')}</ul>` 
-          : '<p class="text-gray-500">No skills listed.</p>';
-
-        preview.innerHTML = `
-          <h3 class="text-lg font-bold">${json.title || 'Portfolio Title'}</h3>
-          <h4 class="mt-4 font-semibold">Projects</h4>
-          ${projectsList}
-          <h4 class="mt-4 font-semibold">Skills</h4>
-          ${skillsList}
-          <p class="mt-4 text-sm text-gray-500">Template: ${templateSelect.value}</p>
-        `;
-
-        extendHosting.classList.remove('hidden');
-      } catch {
-        jsonError.classList.remove('hidden');
-        extendHosting.classList.add('hidden');
-      }
-    });
-
-    extendHosting.addEventListener('click', () => {
-      alert('Redirecting to payment gateway for hosting extension (£10)');
-    });
-  </script>
+  <script type="module" src="/js/editor.ts"></script>
 </body>
 </html>
