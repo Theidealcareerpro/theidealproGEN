@@ -1,81 +1,71 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Create professional CVs, cover letters, and portfolios effortlessly with our intuitive editor and real-time preview." />
-  <meta name="keywords" content="CV generator, cover letter builder, portfolio creator, job applications, resume builder" />
-  <meta name="author" content="Document Generator" />
-  <meta property="og:title" content="Document Generator - Professional CVs, Cover Letters & Portfolios" />
-  <meta property="og:description" content="Build job-winning documents in minutes with our easy-to-use editor and modern templates." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/og-image.jpg" />
-  <meta property="og:url" content="https://documentgenerator.com" />
-  <meta name="robots" content="index, follow" />
-  <title>Document Generator | Professional Job Application Tools</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="font-inter bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
-  <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <header role="banner" class="glass fixed top-0 w-full z-50 bg-blue-800/90 backdrop-blur-md shadow-lg" aria-label="Primary navigation">
-    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-blue-200 font-bold text-2xl">Document Generator</h1>
-      <ul class="flex gap-6">
-        <li><a href="/index.html" class="nav-link active" aria-current="page">Home</a></li>
-        <li><a href="/cv.html" class="nav-link">Create CV</a></li>
-        <li><a href="/cover-letter.html" class="nav-link">Create Cover Letter</a></li>
-        <li><a href="/portfolio.html" class="nav-link">Create Portfolio</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-blue-500/50">
-        <svg class="w-6 h-6 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-      </button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create professional CVs, cover letters, and portfolios with our Document Generation System">
+  <meta name="keywords" content="document generator, CV creator, cover letter, portfolio">
+  <meta name="author" content="Document Generator">
+  <title>Document Generation System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+    .nav-link {
+      transition: all 0.2s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <header class="bg-blue-700 text-white shadow-lg">
+    <nav class="container mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <h1 class="text-xl font-bold">Document Generator</h1>
+        <ul class="flex space-x-6">
+          <li><a href="/cv.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium" aria-label="Create CV">Create CV</a></li>
+          <li><a href="/cover-letter.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium" aria-label="Create Cover Letter">Create Cover Letter</a></li>
+          <li><a href="/portfolio.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium" aria-label="Create Portfolio">Create Portfolio</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
-  <main id="main-content" tabindex="-1" role="main" class="pt-20 flex-grow">
-    <section class="hero bg-gradient-to-br from-blue-600 to-blue-800 text-white py-24 px-4 text-center rounded-b-3xl shadow-2xl" aria-label="Hero section">
-      <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">Create Job-Winning Documents Effortlessly</h2>
-      <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 font-medium text-blue-100">Build professional CVs, cover letters, and portfolios in minutes with our intuitive editor and real-time preview.</p>
-      <a href="/cv.html" class="cta-btn inline-block bg-white text-blue-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-blue-100 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300" role="button">Start Creating Now</a>
-    </section>
-
-    <section class="features container mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-3 gap-8" aria-label="What you can create">
-      <article class="feature-card bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300" tabindex="0">
-        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">CV Generator</h4>
-        <p class="text-gray-600 dark:text-gray-400 mb-6">Create a polished CV that recruiters love with live previews and modern templates.</p>
-        <a href="/cv.html" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline" aria-label="Create CV">Create CV →</a>
-      </article>
-      <article class="feature-card bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300" tabindex="0">
-        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Cover Letter Builder</h4>
-        <p class="text-gray-600 dark:text-gray-400 mb-6">Generate a personalized cover letter that highlights your strengths and achievements.</p>
-        <a href="/cover-letter.html" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline" aria-label="Create Cover Letter">Create Cover Letter →</a>
-      </article>
-      <article class="feature-card bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300" tabindex="0">
-        <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Portfolio Creator</h4>
-        <p class="text-gray-600 dark:text-gray-400 mb-6">Showcase your work and skills with a professional portfolio that's easy to share.</p>
-        <a href="/portfolio.html" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline" aria-label="Create Portfolio">Create Portfolio →</a>
-      </article>
-    </section>
-
-    <section class="subscribe container mx-auto px-4 py-16 text-center" aria-label="Newsletter subscription">
-      <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Stay Updated</h3>
-      <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto">Join our newsletter for tips, templates, and updates on creating standout job application documents.</p>
-      <div class="flex justify-center">
-        <input type="email" id="email-input" placeholder="Enter your email" class="p-4 rounded-l-xl border-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 w-64" aria-label="Email address">
-        <button id="subscribe-btn" class="bg-blue-600 text-white font-semibold py-4 px-6 rounded-r-xl hover:bg-blue-700 transition-colors duration-300" aria-label="Subscribe to newsletter">Subscribe</button>
+  <main class="container mx-auto px-4 py-8 flex-grow">
+    <section class="text-center">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4">Welcome to Document Generator</h1>
+      <p class="text-lg text-gray-600 mb-6">Create professional documents with ease. Select a document type to get started.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+        <a href="/cv.html" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <h2 class="text-xl font-semibold text-blue-600">CV</h2>
+          <p class="text-gray-600">Create a professional CV</p>
+        </a>
+        <a href="/cover-letter.html" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <h2 class="text-xl font-semibold text-blue-600">Cover Letter</h2>
+          <p class="text-gray-600">Craft a compelling cover letter</p>
+        </a>
+        <a href="/portfolio.html" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <h2 class="text-xl font-semibold text-blue-600">Portfolio</h2>
+          <p class="text-gray-600">Build an impressive portfolio</p>
+        </a>
       </div>
     </section>
   </main>
 
-  <footer role="contentinfo" class="bg-gray-900 text-gray-200 py-6 text-center shadow-inner">
-    <p>&copy; 2025 Document Generator. All rights reserved.</p>
+  <footer class="bg-gray-800 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 Document Generator. All rights reserved.</p>
+    </div>
   </footer>
 
-  <script type="module" src="scripts.js"></script>
-</body>
-</html>
+  <script type="module">
+    // Basic interactivity for navigation
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('bg-blue-800'));
+        e.target.classList.add('bg-blue-800');
+      });
+    });
+  </script>
