@@ -25,6 +25,7 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
     }
     .fade-in.visible {
       opacity: 1;
@@ -34,71 +35,107 @@
     /* Card Hover */
     .feature-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
-    .feature-card:hover {
+    .feature-card:hover,
+    .feature-card:focus-within {
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      outline: none;
+    }
+
+    /* Navigation link */
+    .nav-link {
+      transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+      display: inline-block;
+    }
+    .nav-link:hover,
+    .nav-link:focus {
+      background-color: rgba(59, 130, 246, 0.7); /* Tailwind blue-500 with opacity */
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    /* Accessibility: Screen reader only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .focus\:not-sr-only:focus {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      clip: auto;
+      white-space: normal;
     }
   </style>
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen text-gray-900">
 
   <!-- Skip Link -->
-  <a href="#main-content" class="sr-only focus:not-sr-only bg-blue-700 text-white p-2">Skip to content</a>
+  <a href="#main-content" class="sr-only focus:not-sr-only bg-blue-700 text-white p-2 z-50 rounded">Skip to content</a>
 
   <!-- Header -->
   <header class="glass text-white shadow-lg fixed w-full top-0 z-50">
-    <nav class="container mx-auto flex justify-between items-center px-4 py-4">
+    <nav class="container mx-auto flex justify-between items-center px-4 py-4" role="navigation" aria-label="Primary navigation">
       <h1 class="text-2xl font-bold">Document Generator</h1>
       <ul class="flex space-x-6">
         <li><a href="/index.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium bg-blue-800" aria-current="page">Home</a></li>
-        <li><a href="/cv.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800">Create CV</a></li>
-        <li><a href="/cover-letter.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800">Create Cover Letter</a></li>
-        <li><a href="/portfolio.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800">Create Portfolio</a></li>
+        <li><a href="/cv.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:bg-blue-800 focus:outline-none">Create CV</a></li>
+        <li><a href="/cover-letter.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:bg-blue-800 focus:outline-none">Create Cover Letter</a></li>
+        <li><a href="/portfolio.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 focus:bg-blue-800 focus:outline-none">Create Portfolio</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Hero Section -->
-  <main id="main-content" class="flex-grow pt-20">
+  <main id="main-content" class="flex-grow pt-24" tabindex="-1">
     <section class="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 text-white py-24">
-      <div class="container mx-auto text-center px-4 fade-in">
+      <div class="container mx-auto text-center px-4 fade-in" role="region" aria-label="Introduction">
         <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Create Job-Winning Documents Effortlessly</h2>
         <p class="text-lg max-w-2xl mx-auto mb-6">
           Build professional CVs, cover letters, and portfolios in minutes with our intuitive editor and real-time preview.
         </p>
-        <a href="/cv.html" class="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-100 transition transform hover:scale-105">
+        <a href="/cv.html" class="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-100 transition transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50">
           Start Creating Now
         </a>
       </div>
     </section>
 
     <!-- Features Section -->
-    <section class="container mx-auto py-20 px-4">
-      <h3 class="text-3xl font-bold text-center mb-16 fade-in">What You Can Create</h3>
+    <section class="container mx-auto py-20 px-4" role="region" aria-labelledby="features-title">
+      <h3 id="features-title" class="text-3xl font-bold text-center mb-16 fade-in">What You Can Create</h3>
       <div class="grid md:grid-cols-3 gap-8">
         <!-- CV -->
-        <div class="feature-card glass rounded-xl p-8 text-center fade-in">
-          <img src="/assets/icons/cv-icon.svg" alt="CV Icon" class="mx-auto mb-6 w-16 h-16">
+        <div tabindex="0" class="feature-card glass rounded-xl p-8 text-center fade-in" role="button" aria-describedby="cv-desc" aria-label="Create a CV">
+          <img src="/assets/icons/cv-icon.svg" alt="CV Icon" class="mx-auto mb-6 w-16 h-16" />
           <h4 class="text-xl font-semibold mb-3">CV Generator</h4>
-          <p class="text-gray-200 mb-4">Create a polished CV that recruiters love with live previews and modern templates.</p>
-          <a href="/cv.html" class="text-white font-medium hover:underline">Create CV →</a>
+          <p id="cv-desc" class="text-gray-200 mb-4">Create a polished CV that recruiters love with live previews and modern templates.</p>
+          <a href="/cv.html" class="text-white font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded">Create CV →</a>
         </div>
 
         <!-- Cover Letter -->
-        <div class="feature-card glass rounded-xl p-8 text-center fade-in">
-          <img src="/assets/icons/cover-letter-icon.svg" alt="Cover Letter Icon" class="mx-auto mb-6 w-16 h-16">
+        <div tabindex="0" class="feature-card glass rounded-xl p-8 text-center fade-in" role="button" aria-describedby="cover-letter-desc" aria-label="Create a Cover Letter">
+          <img src="/assets/icons/cover-letter-icon.svg" alt="Cover Letter Icon" class="mx-auto mb-6 w-16 h-16" />
           <h4 class="text-xl font-semibold mb-3">Cover Letter Builder</h4>
-          <p class="text-gray-200 mb-4">Generate a personalized cover letter that highlights your strengths and achievements.</p>
-          <a href="/cover-letter.html" class="text-white font-medium hover:underline">Create Cover Letter →</a>
+          <p id="cover-letter-desc" class="text-gray-200 mb-4">Generate a personalized cover letter that highlights your strengths and achievements.</p>
+          <a href="/cover-letter.html" class="text-white font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded">Create Cover Letter →</a>
         </div>
 
         <!-- Portfolio -->
-        <div class="feature-card glass rounded-xl p-8 text-center fade-in">
-          <img src="/assets/icons/portfolio-icon.svg" alt="Portfolio Icon" class="mx-auto mb-6 w-16 h-16">
+        <div tabindex="0" class="feature-card glass rounded-xl p-8 text-center fade-in" role="button" aria-describedby="portfolio-desc" aria-label="Create a Portfolio">
+          <img src="/assets/icons/portfolio-icon.svg" alt="Portfolio Icon" class="mx-auto mb-6 w-16 h-16" />
           <h4 class="text-xl font-semibold mb-3">Portfolio Creator</h4>
-          <p class="text-gray-200 mb-4">Showcase your work and skills with a professional portfolio that's easy to share.</p>
-          <a href="/portfolio.html" class="text-white font-medium hover:underline">Create Portfolio →</a>
+          <p id="portfolio-desc" class="text-gray-200 mb-4">Showcase your work and skills with a professional portfolio that's easy to share.</p>
+          <a href="/portfolio.html" class="text-white font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded">Create Portfolio →</a>
         </div>
       </div>
     </section>
@@ -113,16 +150,19 @@
 
   <script src="/js/main.ts" type="module" defer></script>
   <script>
-    // Fade-in on scroll
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.2 });
-    fadeElements.forEach(el => observer.observe(el));
+    // Fade-in on scroll with IntersectionObserver
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Optional: animate once only
+          }
+        });
+      }, { threshold: 0.2 });
+      fadeElements.forEach(el => observer.observe(el));
+    });
   </script>
 </body>
 </html>
